@@ -1,0 +1,31 @@
+{
+  "name": "nerdnews",
+  "version": "1.0.0",
+  "description": "News and Tech Blog",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "seeds": "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgtiburon/NerdNews.git"
+  },
+  "author": "Tony Gendreau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tgtiburon/NerdNews/issues"
+  },
+  "homepage": "https://github.com/tgtiburon/NerdNews#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
+    "express-handlebars": "^6.0.2",
+    "express-session": "^1.17.2",
+    "jest": "^27.4.7",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.5"
+  }
+}
