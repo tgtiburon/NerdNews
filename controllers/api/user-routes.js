@@ -76,6 +76,39 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// Login uses post because it is in the req.body instead of the url
+router.post('/login', (req, res) => {
+  // Query operation
+  // expects {email: 'email@gmail.com', password: 'password1243'}
+  User.findOne({
+      where: {
+          email: req.body.email
+      }
+  })
+  .then(dbUserData => {
+      if(!dbUserData) {
+          res.status(400).json({ message: 'No user with the email address!'});
+          return;
+      }
+    
+      // Verify user
+      const validPassword = dbUserData.checkPassword(req.body.password);
+      if(!validPassword) {
+          res.status(400).json({ message: 'Incorrect Password!' });
+          return;
+      }
+      req.session.save(() => {
+          // declare session variables
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+
+          res.json({ user: dbUserData, message: 'You are now logged in!'});
+
+      });
+  });
+});
+
 // DELETE /api/users/1
 router.delete('/:id', (req, res) => {
     User.destroy({
