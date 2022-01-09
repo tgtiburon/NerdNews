@@ -9,6 +9,8 @@ router.get('/', (req, res) => {
     Post.findAll({
         //Query config
         attributes: ['id', 'post_url', 'title', 'created_at'],
+        // We could use 
+        // order: [['created_at', 'DESC']],
         // include is a join
         include: [
             {
