@@ -69,6 +69,15 @@ router.get('/login', (req, res)=> {
     // no variables need to be passed so only the page name
     res.render('login');
 });
+router.get('/signup', (req, res)=> {
+    // if they are logged in redirect to a homepage if one exists.
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    // no variables need to be passed so only the page name
+    res.render('signup');
+});
 
 
 router.get('/post/:id', (req,res) => {
