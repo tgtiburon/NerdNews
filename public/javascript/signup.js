@@ -1,15 +1,13 @@
 
-function signupFormHandler(event) {
+async function signupFormHandler(event) {
     event.preventDefault();
     
 
     const username = document.querySelector('#username-signup').value.trim();
-   // const email = document.querySelector('#email-signup').value.trim();
-   // const email = "test@test.com";
     const password = document.querySelector('#password-signup').value.trim();
   
     if (username && password) {
-      fetch('/api/users', {
+      const response = await fetch('/api/users/', {
         method: 'post',
         body: JSON.stringify({
           username,
@@ -17,11 +15,18 @@ function signupFormHandler(event) {
           password
         }),
         headers: { 'Content-Type': 'application/json' }
-      }).then((response) => {console.log(response)})
-    }
+      });
 
-   // console.log('In signupFormHandler');
-   // console.log(body);
+      // check the response status
+      if(response.ok) {
+        console.log('success');
+        document.location.replace('/');
+      } else {
+        alert(response.statusText);
+      }
+
+    }
+    
 
 }
 

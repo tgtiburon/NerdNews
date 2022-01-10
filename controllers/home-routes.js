@@ -5,7 +5,7 @@ const { User,Post, Comment } = require('../models');
 const router = require('express').Router();
 
 router.get('/', (req, res)=> {
-    console.log('in get/');
+    console.log(req.session);
   
    // res.render('main');
    // console.log(req.session);
@@ -40,15 +40,15 @@ router.get('/', (req, res)=> {
         const posts = dbPostData.map(post => post.get({ plain: true }));
         // pass a single post object into the homepage template
          // .render('homepage.handlebars')
-   // res.render('homepage', {
+        res.render('homepage', {
         
-        // posts//,
-      //  loggedIn: req.session.loggedIn
-    // });   
+          posts,
+          loggedIn: req.session.loggedIn
+     });   
     //console.log(dbPostData[0]);
    // res.render('homepage', dbPostData[0].get({ plain: true}));
-    console.log(posts);
-    res.render('homepage', { posts });
+    //console.log(posts);
+   // res.render('homepage', { posts });
    
     
 
@@ -80,6 +80,7 @@ router.get('/signup', (req, res)=> {
 });
 
 
+
 router.get('/post/:id', (req,res) => {
     // below was hardcoded so we could test it
     // const post = {
@@ -102,7 +103,7 @@ router.get('/post/:id', (req,res) => {
             'post_url', 
             'title',
             'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        //    [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         include: [
             {
