@@ -61,6 +61,32 @@ header nav {
     border-radius: 15px;
     text-shadow: none;
   }
+
+
+  /* single-post */
+  .post {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+  .post>.title {
+    color:red;
+  }
+  .post>.meta {
+    color: green;
+  }
+  .post>.comment-form {
+   
+    border: 1px, red, solid;
+    /* background-color: red; */
+    
+  }
+  .comment-form>div>textarea {
+    min-width: 60%;
+    min-height: 150px;
+  }
+  .comments>.comment:nth-child(odd) {
+    background-color: var(--color5);
+  }
 /* a:link {
     color:var(--color5);
     background-color: var(--color3);

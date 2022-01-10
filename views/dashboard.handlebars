@@ -20,14 +20,13 @@
             <li>
                <a href="/dashboard">Dashboard</a>
             </li>
-            {{#unless loggedIn}}
-            <li>    
-                <a href="/login">Login</a>
-            </li>
-            {{/unless}}
             {{#if loggedIn}}
             <li>        
                 <button id="logout" class="btn-no-style">Logout</button>
+            </li>
+            {{else}}
+            <li>    
+              <a href="/login">Login</a>
             </li>
             {{/if}}
         </ul>
@@ -46,9 +45,9 @@
       Thanks for visiting!
     </footer>
   </div>
-  {{!-- {{#if loggedIn}} --}}
-  <script src="./javascript/logout.js"></script>
-  {{!-- {{/if}}  --}}
+  {{#if loggedIn}} 
+  <script src="/javascript/logout.js"></script>
+  {{/if}} 
 
 </body>
 

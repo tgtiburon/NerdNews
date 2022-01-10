@@ -60,19 +60,22 @@ router.get('/:id', (req,res) => {
 router.post('/', (req,res)=> {
 
     // Create
-
-    Comment.create({
-        comment_text: req.body.comment_text,
-        user_id: req.body.user_id,
-        post_id: req.body.post_id
-    })
-    .then(dbCommentData => {
-        res.json(dbCommentData);
-    })
-    .catch( err => {
-        console.log(err);
-        res.status(400).json(err);
-    });
+    // check to see if logged in before posting
+    if (req.session) {
+        Comment.create({
+            comment_text: req.body.comment_text,
+            post_id: req.body.post_id,
+            // get the id from the session
+            user_id: req.session.user_id
+        })
+        .then(dbCommentData => {
+            res.json(dbCommentData);
+        })
+        .catch( err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    }
 
 });
 
