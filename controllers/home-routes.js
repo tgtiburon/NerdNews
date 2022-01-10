@@ -1,56 +1,63 @@
 const sequelize = require('../config/connection');
-const { User } = require('../models');
+const { User,Post, Comment } = require('../models');
 
 
 const router = require('express').Router();
 
 router.get('/', (req, res)=> {
     console.log('in get/');
+  
    // res.render('main');
    // console.log(req.session);
     //  res.json("Homepage");
-    // Post.findAll({
-    //     attributes: [
-    //         'id',
-    //         'post_url',
-    //         'title',
-    //         'created_at',
-    //         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-    //     ],
-    //     include: [
-    //         {
-    //             model: Comment,
-    //             attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-    //             include: {
-    //                 // user that left the comment
-    //                 model: User,
-    //                 attributes: ['username']
-    //             }
-    //         },
-    //         {
-    //             // user who made the post
-    //             model: User,
-    //             attributes: ['username']
-    //         }
-    //     ]
-    // })
-    // .then(dbPostData => {
-    //     // we need to serialize the entire dbPostData array
-    //     const posts = dbPostData.map(post => post.get({ plain: true }));
-    //     // pass a single post object into the homepage template
-    //      // .render('homepage.handlebars')
-    // res.render('homepage', {
-    //      posts,
-    //     loggedIn: req.session.loggedIn
-    //  });   
+    Post.findAll({
+         attributes: [
+            'id',
+            'post_url',
+            'title',
+            'created_at'//,
+         //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    // user that left the comment
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                // user who made the post
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(dbPostData => {
+        // we need to serialize the entire dbPostData array
+        const posts = dbPostData.map(post => post.get({ plain: true }));
+        // pass a single post object into the homepage template
+         // .render('homepage.handlebars')
+   // res.render('homepage', {
+        
+        // posts//,
+      //  loggedIn: req.session.loggedIn
+    // });   
+    //console.log(dbPostData[0]);
+   // res.render('homepage', dbPostData[0].get({ plain: true}));
+    console.log(posts);
+    res.render('homepage', { posts });
+   
     
 
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    //   //  console.log(dbPostData[0]);
-    //     res.status(500).json(err);
-    // });
+    })
+    .catch(err => {
+        console.log(err);
+      //  console.log(dbPostData[0]);
+        res.status(500).json(err);
+    });
    
 });
 router.get('/login', (req, res)=> {

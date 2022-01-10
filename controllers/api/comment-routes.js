@@ -17,6 +17,36 @@ router.get('/', (req,res) => {
         //         attributes: ['username']
         //     }
         // ]
+       
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+    
+
+});
+
+router.get('/:id', (req,res) => {
+    console.log('------------------------------');
+    Comment.findOne({
+
+        where: {
+            id: req.params.id
+          }
+        //Query config
+      //  attributes: ['id', 'comment_text'],
+        // We could use 
+        // order: [['created_at', 'DESC']],
+        // include is a join
+        // include: [
+        //     {
+        //         model: User, 
+        //         attributes: ['username']
+        //     }
+        // ]
+       
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -46,7 +76,23 @@ router.post('/', (req,res)=> {
 
 });
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
+    Comment.destroy({
+        where: {
+            id:req.params.id
+        }
+    })
+    .then(dbCommentData => {
+        if(!dbCommentData) {
+            res.status(404).json({ message: 'No comment found with this id'});
+            return;
+        }
+        res.json(dbCommentData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 
 });
 

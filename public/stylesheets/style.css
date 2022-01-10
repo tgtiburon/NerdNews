@@ -1,0 +1,140 @@
+/*Global Variables */
+:root {
+    
+    --color1: rgb(15,12,46);
+    --color2: rgb(29,35,120);
+    --color3: rgb(40,71,217);
+    --color4: rgb(88,165,245);
+    --color5: rgb(122,216,248); 
+    --color6: rgb(255,255,255); 
+    
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+main {
+    color:var(--color1);
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    min-height: 80vh;
+    
+
+}
+
+.navbar {
+    /* background-image:  linear-gradient(90deg, rgb(28, 28, 199),rgb(90, 90, 90)); */
+    /* color: red; */
+    font-weight: bolder; 
+    background-color: var(--color3); 
+    padding:1.0rem;  
+}
+
+header a {
+    text-decoration: none;
+    color: var(--color6);
+  }
+  
+header nav {
+    margin: 7px 0;
+  }
+  
+  header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-items: center;
+    list-style: none;
+  }
+  
+  header nav ul li a {
+    padding: 10px 15px;
+    font-weight: lighter;
+    font-size: 1.55vw;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  header nav ul li a:hover {
+    background: var(--color6);
+    color: #024e76;
+    border-radius: 15px;
+    text-shadow: none;
+  }
+/* a:link {
+    color:var(--color5);
+    background-color: var(--color3);
+    text-decoration: none;
+    padding: 0,1,0,1rem;
+}
+
+a:visited {
+    color:var(--color5);
+    background-color: var(--color3);
+    text-decoration: none;
+  }
+
+  
+a:hover {
+    color: var(--color4);
+    background-color: var(--color6);
+    text-decoration: underline;
+  } */
+ /* 
+  a:active {
+    color:var(--color5);
+    background-color: var(--color4);
+    text-decoration: underline;
+  }
+*/
+.main-title {
+    font-size:3rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+}
+#title-div {
+    background-color: var(--color3);
+    margin-bottom: 2rem;
+}
+ol {
+    font-size: 1.0rem;
+
+}
+li {
+    padding: .5rem;
+}
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+   
+  }
+
+footer {
+    padding-top: 1rem;
+    border-top: 1px solid red;
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+
+
+/* Media Query for better mobile responsiveness */
+/* Handeled with Bootstrap */
+@media screen and (max-width: 980px) {
+
+    /* NO CHANGES NEEDED FOR THIS RESOLUTION */
+         
+}/*980px breakpoint end */
+@media screen and (max-width: 768px) {
+      
+       
+}/*768px breakpoint end */
+    
+@media screen and (max-width: 575px) {
+          
+}/*575px breakpoint end */

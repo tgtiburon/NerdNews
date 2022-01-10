@@ -1,19 +1,42 @@
 const router = require('express').Router();
 // Include user so we can get user info from the user_id foreign key
 // then we can use a join to put them together
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 
 // Get all posts in the system
 router.get('/', (req, res) => {
     console.log('------------------------------');
     Post.findAll({
         //Query config
-        attributes: ['id', 'post_url', 'title', 'created_at'],
+        attributes: [
+          'id', 
+          'post_url', 
+          'title', 
+          'created_at'
+        ],
         // We could use 
-        // order: [['created_at', 'DESC']],
+        order: [['created_at', 'DESC']],
         // include is a join
+
+
         include: [
             {
+              model: Comment,
+              attributes: [
+                'id', 
+                'comment_text',
+                'post_id',
+                'user_id',
+                'created_at'
+              ],
+              // Attach the username to the comment
+              include: {
+                model:User,
+                attributes: ['username']
+              }
+
+            },
+            {   // User who posted
                 model: User, 
                 attributes: ['username']
             }
@@ -36,6 +59,12 @@ router.get('/:id', (req, res) => {
         {
           model: User,
           attributes: ['username']
+        }
+      ], 
+      include: [
+        {
+        model: Comment,
+        attributes: ['id', 'comment_text']
         }
       ]
     })

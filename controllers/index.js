@@ -6,7 +6,7 @@ const homeRoutes = require('./home-routes.js');
 
 
 router.use('/api', apiRoutes);
-//router.use('/', homeRoutes);
+router.use('/', homeRoutes);
 //router.use('/dashboard', dashboardRoutes);
 
 // This second router.use catches all passthroughs and 404s them.
