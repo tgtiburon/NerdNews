@@ -13,15 +13,20 @@ router.get('/', (req, res)=> {
     Post.findAll({
          attributes: [
             'id',
-            'post_url',
+            'post_content',
             'title',
-            'created_at'//,
-         //   [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+            'created_at'
         ],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: [
+                'id',
+                 'comment_text',
+                  'post_id',
+                  'user_id',
+                  'created_at'
+                ],
                 include: {
                     // user that left the comment
                     model: User,
@@ -81,11 +86,12 @@ router.get('/signup', (req, res)=> {
 
 
 
+
 router.get('/post/:id', (req,res) => {
     // below was hardcoded so we could test it
     // const post = {
     //     id: 1,
-    //     post_url: 'https://handlebarsjs.com/guide/',
+    //     post_content: 'https://handlebarsjs.com/guide/',
     //     title: 'Handlebars Docs',
     //     created_at: new Date(),
     //     vote_count: 10,
@@ -100,7 +106,7 @@ router.get('/post/:id', (req,res) => {
         },
         attributes: [
             'id',
-            'post_url', 
+            'post_content', 
             'title',
             'created_at',
         //    [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -108,7 +114,12 @@ router.get('/post/:id', (req,res) => {
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: [
+                    'id',
+                    'comment_text',
+                    'post_id',
+                    'user_id',
+                    'created_at'],
                 include: {
                     model: User, 
                     attributes: ['username']

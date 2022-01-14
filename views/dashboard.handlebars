@@ -1,54 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+ {{>dashboard-title}}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+ <button id="btn-new-post" class="btn-no-style"> +New Post</button>
+
+{{#if posts.length}}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
 
 
-<body>
-  <div class="wrapper">
-    <header>
-       <nav class="navbar">
-         <ul>
-           <li>
-               <a href="/">Home</a>
-            </li>
-            <li>
-               <a href="/dashboard">Dashboard</a>
-            </li>
-            {{#if loggedIn}}
-            <li>        
-                <button id="logout" class="btn-no-style">Logout</button>
-            </li>
-            {{else}}
-            <li>    
-              <a href="/login">Login</a>
-            </li>
-            {{/if}}
-        </ul>
-      </nav>
-      <div id="title-div">
-          <h1>
-            <a href="/" class="main-title">NerdNews</a>
-          </h1>
-      </div>
-     
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer id="footer">
-      Thanks for visiting!
-    </footer>
-  </div>
-  {{#if loggedIn}} 
-  <script src="/javascript/logout.js"></script>
-  {{/if}} 
-
-</body>
-
-</html>
+<script src="./javascript/new-post.js"></script>
+<script src="./javascript/logout.js"></script>

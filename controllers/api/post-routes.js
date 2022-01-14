@@ -2,6 +2,7 @@ const router = require('express').Router();
 // Include user so we can get user info from the user_id foreign key
 // then we can use a join to put them together
 const { Post, User, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // Get all posts in the system
 router.get('/', (req, res) => {
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
         //Query config
         attributes: [
           'id', 
-          'post_url', 
+          'post_content', 
           'title', 
           'created_at'
         ],
@@ -54,7 +55,7 @@ router.get('/:id', (req, res) => {
       where: {
         id: req.params.id
       },
-      attributes: ['id', 'post_url', 'title', 'created_at'],
+      attributes: ['id', 'post_content', 'title', 'created_at'],
       include: [
         {
           model: User,
@@ -82,26 +83,30 @@ router.get('/:id', (req, res) => {
   });
 
 // CREATE POST
-  router.post('/', (req, res) => {
-    // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
+  router.post('/', withAuth, (req, res) => {
+    // expects {title: 'Taskmaster goes public!', post_content: 'https://taskmaster.com/press', user_id: 1}
     Post.create({
       title: req.body.title,
-      post_url: req.body.post_url,
-      user_id: req.body.user_id
+      post_content: req.body.post_content,
+      user_id: req.session.user_id
     })
       .then(dbPostData => res.json(dbPostData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
+
+
+      
   });
 
   // UPDATE
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id',withAuth,  (req, res) => {
     Post.update(
       {
-        title: req.body.title
+        title: req.body.title,
+        post_content: req.body.post_content
       },
       {
         where: {
@@ -125,7 +130,8 @@ router.get('/:id', (req, res) => {
 
   // DELETE
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', withAuth, (req, res) => {
+   // alert("Inside router.delete");
     Post.destroy({
       where: {
         id: req.params.id

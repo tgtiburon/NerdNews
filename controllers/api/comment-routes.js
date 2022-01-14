@@ -1,6 +1,6 @@
 const router = require('express').Router();
-//const res = require('express/lib/response');
 const { Comment }    = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
 router.get('/', (req,res) => {
@@ -57,7 +57,7 @@ router.get('/:id', (req,res) => {
 
 });
 
-router.post('/', (req,res)=> {
+router.post('/', withAuth, (req,res)=> {
 
     // Create
     // check to see if logged in before posting
@@ -79,7 +79,7 @@ router.post('/', (req,res)=> {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',withAuth,  (req, res) => {
     Comment.destroy({
         where: {
             id:req.params.id

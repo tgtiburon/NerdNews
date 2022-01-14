@@ -2,106 +2,116 @@ const { Post } = require('../models');
 
 const postdata = [
   {
-    title: 'Donec posuere metus vitae ipsum.',
-    post_url: 'https://buzzfeed.com/in/imperdiet/et/commodo/vulputate.png',
-    user_id: 10
-  },
-  {
-    title: 'Morbi non quam nec dui luctus rutrum.',
-    post_url: 'https://nasa.gov/donec.json',
-    user_id: 8
-  },
-  {
-    title: 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
-    post_url: 'https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx',
+    title: 'Title 1',
+    post_content: 'Post content 1',
     user_id: 1
   },
   {
-    title: 'Nunc purus.',
-    post_url: 'http://desdev.cn/enim/blandit/mi.jpg',
+    title: 'Title 2',
+    post_content: 'Post content 2',
+    user_id: 2
+  },
+  {
+    title: 'Title 3',
+    post_content: 'Post content 3',
+    user_id: 3
+  },
+  {
+    title: 'Title 4',
+    post_content: 'Post content 4',
     user_id: 4
   },
   {
-    title: 'Pellentesque eget nunc.',
-    post_url: 'http://google.ca/nam/nulla/integer.aspx',
-    user_id: 7
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-    post_url: 'https://stanford.edu/consequat.png',
-    user_id: 4
-  },
-  {
-    title: 'In hac habitasse platea dictumst.',
-    post_url: 'http://edublogs.org/non/ligula/pellentesque.js',
-    user_id: 1
-  },
-  {
-    title: 'Morbi non quam nec dui luctus rutrum.',
-    post_url: 'http://ucla.edu/consequat/nulla.html',
-    user_id: 1
-  },
-  {
-    title: 'Duis ac nibh.',
-    post_url: 'http://theguardian.com/dui/vel/nisl/duis/ac/nibh.aspx',
-    user_id: 9
-  },
-  {
-    title: 'Curabitur at ipsum ac tellus semper interdum.',
-    post_url: 'https://reverbnation.com/ligula/sit.jpg',
+    title: 'Title 5',
+    post_content: 'Post content 5',
     user_id: 5
   },
   {
-    title: 'In hac habitasse platea dictumst.',
-    post_url: 'http://china.com.cn/lectus/vestibulum.json',
-    user_id: 3
+    title: 'Title 6',
+    post_content: 'Post content 6',
+    user_id: 6
   },
   {
-    title: 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.',
-    post_url: 'http://networksolutions.com/nam/ultrices/libero/non/mattis/pulvinar.json',
-    user_id: 10
+    title: 'Title 7',
+    post_content: 'Post content 7',
+    user_id: 7
   },
   {
-    title: 'Donec dapibus.',
-    post_url: 'https://instagram.com/ac/neque/duis/bibendum/morbi/non.xml',
+    title: 'Title 8',
+    post_content: 'Post content 8',
     user_id: 8
   },
   {
-    title: 'Nulla tellus.',
-    post_url: 'https://lycos.com/natoque/penatibus/et.html',
-    user_id: 3
+    title: 'Title 9',
+    post_content: 'Post content 9',
+    user_id: 9
   },
   {
-    title: 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.',
-    post_url: 'https://gmpg.org/lorem.jpg',
-    user_id: 3
+    title: 'Title 10',
+    post_content: 'Post content 10',
+    user_id: 10
   },
   {
-    title:
-      'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.',
-    post_url: 'https://paginegialle.it/mattis/egestas.jsp',
+    title: 'Title 11',
+    post_content: 'Post content 11',
+    user_id: 10
+  },
+  {
+    title: 'Title 12',
+    post_content: 'Post content 12',
+    user_id: 9
+  },
+  {
+    title: 'Title 13',
+    post_content: 'Post content 13',
+    user_id: 8
+  },
+  {
+    title: 'Title 14',
+    post_content: 'Post content 14',
     user_id: 7
   },
   {
-    title: 'In hac habitasse platea dictumst.',
-    post_url: 'http://wikia.com/turpis/eget.jpg',
+    title: 'Title 15',
+    post_content: 'Post content 15',
     user_id: 6
   },
   {
-    title: 'Etiam justo.',
-    post_url: 'https://shareasale.com/quis.json',
+    title: 'Title 16',
+    post_content: 'Post content 16',
+    user_id: 5
+  },
+  {
+    title: 'Title 17',
+    post_content: 'Post content 17',
     user_id: 4
   },
   {
-    title: 'Nulla ut erat id mauris vulputate elementum.',
-    post_url: 'http://java.com/diam/neque/vestibulum/eget/vulputate/ut/ultrices.png',
-    user_id: 6
+    title: 'Title 18',
+    post_content: 'Post content 18',
+    user_id: 3
   },
   {
-    title: 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.',
-    post_url: 'https://java.com/at/nibh/in.png',
-    user_id: 7
-  }
+    title: 'Title 19',
+    post_content: 'Post content 19',
+    user_id: 2
+  },
+  {
+    title: 'Title 20',
+    post_content: 'Post content 20',
+    user_id: 1
+  },
+  {
+    title: 'Title 21',
+    post_content: 'Post content 21',
+    user_id: 2
+  },
+  {
+    title: 'Title 22',
+    post_content: 'Post content 22',
+    user_id: 3
+  },
+  
 ];
 
 const seedPosts = () => Post.bulkCreate(postdata);

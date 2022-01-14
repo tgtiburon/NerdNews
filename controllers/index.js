@@ -2,12 +2,14 @@ const router = require('express').Router();
 
 const apiRoutes = require('./api');
 const homeRoutes = require('./home-routes.js');
-//const dashboardRoutes = require('./dashboard-routes');
+const dashboardRoutes = require('./dashboard-routes');
+const newPostRoutes = require('./newPost-routes');
 
 
 router.use('/api', apiRoutes);
 router.use('/', homeRoutes);
-//router.use('/dashboard', dashboardRoutes);
+router.use('/dashboard', dashboardRoutes);
+router.use('/newpost', newPostRoutes);
 
 // This second router.use catches all passthroughs and 404s them.
 router.use((req, res)=> {

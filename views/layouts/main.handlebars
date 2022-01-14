@@ -17,9 +17,11 @@
            <li>
                <a href="/">Home</a>
             </li>
+            {{#if loggedIn}}
             <li>
                <a href="/dashboard">Dashboard</a>
             </li>
+            {{/if}}
             {{#unless loggedIn}}
             <li>    
                 <a href="/login">Login</a>
@@ -32,12 +34,7 @@
             {{/if}}
         </ul>
       </nav>
-      <div id="title-div">
-          <h1>
-            <a href="/" class="main-title">NerdNews</a>
-          </h1>
-      </div>
-     
+ 
     </header>
     <main>
       {{{ body }}}
@@ -47,7 +44,7 @@
     </footer>
   </div>
    {{#if loggedIn}} 
-  <script src="./javascript/logout.js"></script>
+  <script src="/javascript/logout.js"></script>
    {{/if}}
 
 </body>

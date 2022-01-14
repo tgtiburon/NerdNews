@@ -1,5 +1,6 @@
 async function loginFormHandler(event) {
     event.preventDefault();
+    alert("In login");
 
    
    const username = document.querySelector('#username-login').value.trim();
@@ -18,7 +19,9 @@ async function loginFormHandler(event) {
        if (response.ok) {
            console.log("Already logged in")
           
-           document.location.replace('/');
+          // document.location.replace('/');
+           // TODO: not sure I want this
+           document.location.replace('/dashboard');
        } else {
            alert(response.statusText);
        }
