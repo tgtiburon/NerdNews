@@ -1,10 +1,10 @@
  {{>dashboard-title}}
 
- <button id="btn-new-post" class="btn-no-style"> +New Post</button>
+
 
 {{#if posts.length}}
 <section>
-  <h2>Your Posts</h2>
+  <h2 id="posts-id">Your Posts: </h2>
   <ol>
     {{#each posts as |post|}}
     <li>
@@ -15,6 +15,11 @@
   </ol>
 </section>
 {{/if}}
+
+<div id="btn-new-post-holder">
+   <button id="btn-new-post" class="btn-no-style"> + New Post</button>
+</div>
+ 
 
 
 <script src="./javascript/new-post.js"></script>

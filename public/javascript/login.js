@@ -1,6 +1,6 @@
 async function loginFormHandler(event) {
     event.preventDefault();
-    alert("In login");
+    //alert("In login");
 
    
    const username = document.querySelector('#username-login').value.trim();

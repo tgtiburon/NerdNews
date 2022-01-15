@@ -11,8 +11,8 @@ async function editFormHandler(event) {
      const id = window.location.toString().split('/') [
         window.location.toString().split('/').length -1
     ];
-    alert(title);
-     alert(post_content);
+    //alert(title);
+    // alert(post_content);
 
     const response = await fetch(`/api/posts/${id}`, {
         method:'PUT', 

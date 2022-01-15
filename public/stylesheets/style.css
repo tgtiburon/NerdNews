@@ -1,12 +1,12 @@
 /*Global Variables */
 :root {
-    
-    --color1: rgb(15,12,46);
-    --color2: rgb(29,35,120);
-    --color3: rgb(40,71,217);
-    --color4: rgb(88,165,245);
-    --color5: rgb(122,216,248); 
-    --color6: rgb(255,255,255); 
+    --color0: rgb(0, 0, 0);
+    --color1: rgb(38, 70, 83);
+    --color2: rgb(42, 157, 143);
+    --color3: rgb(233, 196, 106);
+    --color4: rgb(244, 162, 97);
+    --color5: rgb(231, 111, 81); 
+    --color77: rgb(255,255,255); 
     
 }
 
@@ -16,24 +16,25 @@
     padding: 0;
 }
 main {
-    color:var(--color1);
+    /* color:var(--color77); */
     font-family: Helvetica, Arial, Helvetica, sans-serif;
     min-height: 80vh;
     
 
 }
+  /*-----------------------------------------------------------*/
+/* Navbar style */
 
 .navbar {
-    /* background-image:  linear-gradient(90deg, rgb(28, 28, 199),rgb(90, 90, 90)); */
-    /* color: red; */
+   
     font-weight: bolder; 
-    background-color: var(--color3); 
+    background-color: var(--color2); 
     padding:1.0rem;  
 }
 
 header a {
     text-decoration: none;
-    color: var(--color6);
+    color: var(--color77);
   }
   
 header nav {
@@ -43,51 +44,108 @@ header nav {
   header nav ul {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
     align-items: center;
     list-style: none;
   }
   
   header nav ul li a {
+    /* color: red; */
     padding: 10px 15px;
     font-weight: lighter;
     font-size: 1.55vw;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
   }
   
   header nav ul li a:hover {
     background: var(--color6);
-    color: #024e76;
+    color: var(--color4);
     border-radius: 15px;
-    text-shadow: none;
+    /* text-shadow: none; */
   }
+  #logout {
+    color: var(--color77);
+    border: none;
+    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
+    background-color: var(--color6);
+    font-weight: lighter;
+    font-size: 1.55vw;
+  }
+  
+  #logout:hover {
+    background: var(--color6);
+    color: var(--color4);
+    border-radius: 15px;
+    /* text-shadow: none; */
+  }
+  
+  /*-----------------------------------------------------------*/
+  /* Title Style */
+  .main-title {
+    font-size:3rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    color: var(--color77);
+    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.2);
+}
+#title-div {
+    background-color: var(--color4);
+    margin-bottom: 2rem;
+}
 
-
-  /* single-post */
+  /*-----------------------------------------------------------*/
+  /* single-post and comments */
   .post {
     font-size: 1.5rem;
     padding: 1rem;
+    background-color:var(--color2);
   }
-  .post>.title {
-    color:red;
-  }
-  .post>.meta {
-    color: green;
-  }
-  .post>.comment-form {
-   
-    border: 1px, red, solid;
-    /* background-color: red; */
+  #post-content-span {
+     color:var(--color1); 
+     
     
   }
+  #posts-id {
+    color: var(--color4);
+    font-weight: lighter;
+    font-size: 3.0rem;
+  
+
+  }
+  /*   edit post stuff */
+#content-body {
+  width: 50vw;
+  height: 30vh;
+  resize: none;
+}
+.post>.title {
+    color:var(--color77);
+    background-color: var(--color4);
+    padding: 10px;
+   
+  }
+  #meta-id {
+    font-weight: bold;
+   
+  }
+  
   .comment-form>div>textarea {
-    min-width: 60%;
-    min-height: 150px;
+    width: 50vw;
+  height: 25vh;
+  resize: none;
+  }
+  .comments>.comment {
+    padding: 7px;
   }
   .comments>.comment:nth-child(odd) {
-    background-color: var(--color5);
+    background-color: var(--color4);
+    color: var(--color77);
+    
+    
   }
 
+
+  /*-----------------------------------------------------------*/
+/* New post styling */
 .new-post-form>div {
   display:flex;
   flex-direction:column;
@@ -99,50 +157,38 @@ header nav {
     min-height: 150px;
 
   }
+  #btn-new-post-holder {
+   
+    display:flex;
+    justify-content: center;
+    
+    /* display:flex; */
+  }
 
   #btn-new-post {
     background-color: var(--color4);
     height: 5rem;
     width: 18rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
-  }
-/* a:link {
-    color:var(--color5);
-    background-color: var(--color3);
-    text-decoration: none;
-    padding: 0,1,0,1rem;
-}
-
-a:visited {
-    color:var(--color5);
-    background-color: var(--color3);
-    text-decoration: none;
+    color: var(--color77);
+    
+    border: none;
+    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
+    background-color: var(--color2);
+    font-weight: lighter;
+    
+    border-radius: 15px;
+    
   }
 
-  
-a:hover {
+  #btn-new-post:hover {
     color: var(--color4);
-    background-color: var(--color6);
-    text-decoration: underline;
-  } */
- /* 
-  a:active {
-    color:var(--color5);
-    background-color: var(--color4);
-    text-decoration: underline;
+   
+    /* text-shadow: none; */
   }
-*/
-.main-title {
-    font-size:3rem;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    color: var(--color6);
-}
-#title-div {
-    background-color: var(--color3);
-    margin-bottom: 2rem;
-}
+
+
 ol {
     font-size: 1.0rem;
 
@@ -162,17 +208,38 @@ li {
 
 footer {
     padding-top: 1rem;
-    border-top: 1px solid red;
     display: flex;
     justify-content: center;
     font-size: 1rem;
 }
-/*   edit post stuff */
-#content-body {
-  width: 50vw;
-  height: 30vh;
-  resize: none;
 
+  /*-----------------------------------------------------------*/
+  /* Login and Signup styling */
+#login-title, #signup-title {
+ 
+  color: var(--color4);
+
+  /* text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5); */
+  /* background-color: var(--color6); */
+  font-weight: lighter;
+  font-size: 3.0rem;
+
+
+
+}
+.login-form , .signup-form  {
+  width: 270px;
+  font-size: 1.2rem;
+  margin-right: 100px;
+  padding-bottom: 10px;
+  
+}
+.login-form button, .signup-form button {
+  width: 267px;
+}
+.login-form input, .signup-form input {
+  display: inline-block; 
+  float: right;
 }
 
 

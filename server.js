@@ -25,7 +25,8 @@ const sess = {
     // TODO:  top works locally but not on heroku
     secret: process.env.SESSION_PW,
      secret: 'secret',
-     cookie: {},
+     // maxAge in ms.  So 10 min would be 600000
+     cookie: {maxAge:600000},
      resave: false,
      saveUnitialized: true,
      store: new SequelizeStore({
