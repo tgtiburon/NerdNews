@@ -13,8 +13,9 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 
 // setup express.js
-const app = express();
 const PORT = process.env.PORT || 3001;
+const app = express();
+
 
 // setup express-session and sequlize store
 const session = require('express-session');
