@@ -24,7 +24,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
     // TODO:  top works locally but not on heroku
     secret: process.env.SESSION_PW,
-     secret: 'secret',
+     //secret: 'secret',
      // maxAge in ms.  So 10 min would be 600000
      cookie: {maxAge:600000},
      resave: false,
