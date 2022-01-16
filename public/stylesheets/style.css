@@ -60,6 +60,9 @@ header nav {
     border-radius: 15px;
     /* text-shadow: none; */
   }
+  textarea {
+    border: 2px black solid;
+  }
   #logout {
     color: var(--color77);
     border: none;
@@ -276,18 +279,15 @@ footer {
 }/*768px breakpoint end */
     
 @media screen and (max-width: 575px) {
+  /* Some minor changes needed for super small phones.
+    Most was developed mobile first */
   #logout {
-    /* color: var(--color77);
-    border: none;
-    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
-    background-color: var(--color6);
-    font-weight: lighter; */
+  
     font-size: 1.0rem;
   }
 
   header nav ul li a {
-    /* padding: 10px 15px;
-    font-weight: lighter; */
+   
     font-size: 1.0rem;
     text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
   }

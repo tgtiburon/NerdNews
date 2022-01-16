@@ -21,11 +21,10 @@ const app = express();
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-//TODO: Not sure my SESSION_PW will work  'Super secret secret'
+// Setup session variables
 const sess = {
     // TODO:  top works locally but not on heroku
     secret: process.env.SESSION_PW,
-     //secret: 'secret',
      // maxAge in ms.  So 10 min would be 600000
      cookie: {maxAge:600000},
     // cookie: {maxAge:3000},

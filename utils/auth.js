@@ -1,5 +1,5 @@
-//const { mod } = require("prelude-ls");
 
+// Checks to see if the user is logged in
 const withAuth = (req, res, next) => {
     if(!req.session.user_id) {
         // not logged in so direct to login
