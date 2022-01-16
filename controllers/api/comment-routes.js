@@ -1,33 +1,21 @@
 const router = require('express').Router();
 const { Comment }    = require('../../models');
+// withAuth for posts/deletes/puts
 const withAuth = require('../../utils/auth');
 
-
+// GET api/comments/    Gets all comments
 router.get('/', (req,res) => {
     console.log('------------------------------');
     Comment.findAll({
-        //Query config
-      //  attributes: ['id', 'comment_text'],
-        // We could use 
-        // order: [['created_at', 'DESC']],
-        // include is a join
-        // include: [
-        //     {
-        //         model: User, 
-        //         attributes: ['username']
-        //     }
-        // ]
-       
+        
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
-    
-
 });
-
+// GET api/comment/1    Gets a specific comment 
 router.get('/:id', (req,res) => {
     console.log('------------------------------');
     Comment.findOne({
@@ -35,18 +23,6 @@ router.get('/:id', (req,res) => {
         where: {
             id: req.params.id
           }
-        //Query config
-      //  attributes: ['id', 'comment_text'],
-        // We could use 
-        // order: [['created_at', 'DESC']],
-        // include is a join
-        // include: [
-        //     {
-        //         model: User, 
-        //         attributes: ['username']
-        //     }
-        // ]
-       
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -54,9 +30,8 @@ router.get('/:id', (req,res) => {
         res.status(500).json(err);
     });
     
-
 });
-
+// POST api/comment/   withAuth only logged in can post
 router.post('/', withAuth, (req,res)=> {
 
     // Create
@@ -76,12 +51,13 @@ router.post('/', withAuth, (req,res)=> {
             res.status(400).json(err);
         });
     }
-
 });
 
+// DELETE api/comments/1   Deletes withAuth
 router.delete('/:id',withAuth,  (req, res) => {
     Comment.destroy({
         where: {
+            //Which to delete
             id:req.params.id
         }
     })

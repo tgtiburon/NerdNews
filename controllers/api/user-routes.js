@@ -2,15 +2,12 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// GET /api/users
+// GET /api/users  gets all users
 router.get('/', (req, res) => {
     // Access our User model and run findall
-   // console.log("it worked");
-   
-   // res.json("In get '/' ") ;
     User.findAll({
        // Don't send back the password
-      // attributes: { exclude: ['password']}
+       attributes: { exclude: ['password']}
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err=> {
@@ -19,11 +16,11 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET /api/users/1
+// GET /api/users/1 gets a specific user
 router.get('/:id', (req, res) => {
     User.findOne({
-      // TODO: exclude pword in the end
-       // attributes: { exclude: ['password']},
+      // exclude pword 
+        attributes: { exclude: ['password']},
         where: {
           id: req.params.id
         },
@@ -70,21 +67,19 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST /api/users
+// POST /api/users create a new user
 router.post('/', (req, res) => {
-    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
+  // Requires username and pword to create
   User.create({
     username: req.body.username,
-   // email: req.body.email,
     password: req.body.password
   })
-  // TODO: worked?
     .then(dbUserData => {
+      // Save the session for withAuth
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-
         res.json(dbUserData);
       });
     })
@@ -96,9 +91,10 @@ router.post('/', (req, res) => {
 
 
 // Login uses post because it is in the req.body instead of the url
+// POST api/users/login   Login function
 router.post('/login', (req, res) => {
   // Query operation
-  // expects {email: 'email@gmail.com', password: 'password1243'}
+  // expects username: 'email@gmail.com', password: 'password1243'}
   User.findOne({
       where: {
           username: req.body.username 
@@ -118,6 +114,7 @@ router.post('/login', (req, res) => {
       }
       req.session.save(() => {
           // declare session variables
+          // save them
           req.session.user_id = dbUserData.id;
           req.session.username = dbUserData.username;
           req.session.loggedIn = true;
@@ -127,57 +124,25 @@ router.post('/login', (req, res) => {
       });
   });
 });
-
-// router.post('/login', (req, res) => {
-//   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
-//   User.findOne({
-//     where: {
-//       username: req.body.username
-//     }
-//   }).then(dbUserData => {
-//     if (!dbUserData) {
-//       res.status(400).json({ message: 'No user with that username!' });
-//       return;
-//     }
-
-//     const validPassword = dbUserData.checkPassword(req.body.password);
-
-//     if (!validPassword) {
-//       res.status(400).json({ message: 'Incorrect password!' });
-//       return;
-//     }
-
-//     req.session.save(() => {
-//       req.session.user_id = dbUserData.id;
-//       req.session.username = dbUserData.username;
-//       req.session.loggedIn = true;
-  
-//       res.json({ user: dbUserData, message: 'You are now logged in!' });
-//     });
-//   });
-// });
-
-
-
+// POST api/users/logout    Logout function
 router.post('/logout', (req, res)=> {
   // if they are logged in destroy the session
   if (req.session.loggedIn) {
      req.session.destroy(() => {
+       //destroy the session
+       // user will have to log back in
          res.status(204).end();
      });
      
   } else {
       res.status(404).end();
-
-
   }
  
 });
 
-// PUT /api/users/1
+// PUT /api/users/1  updates user info
 router.put('/:id', withAuth,  (req, res) => {
-     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-
+  
   // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
   User.update(req.body, {
     where: {
@@ -197,9 +162,7 @@ router.put('/:id', withAuth,  (req, res) => {
     });
 });
 
-
-
-// DELETE /api/users/1
+// DELETE /api/users/1  deletes a specific user
 router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
         where: {

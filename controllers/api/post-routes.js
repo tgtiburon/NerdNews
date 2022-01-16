@@ -4,9 +4,8 @@ const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Get all posts in the system
+// GET /api/posts/    get all posts in the system
 router.get('/', (req, res) => {
-    console.log('------------------------------');
     Post.findAll({
         //Query config
         attributes: [
@@ -15,11 +14,9 @@ router.get('/', (req, res) => {
           'title', 
           'created_at'
         ],
-        // We could use 
+
         order: [['created_at', 'DESC']],
         // include is a join
-
-
         include: [
             {
               model: Comment,
@@ -50,12 +47,18 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET api/posts/1   Get a specific post
 router.get('/:id', (req, res) => {
     Post.findOne({
       where: {
         id: req.params.id
       },
-      attributes: ['id', 'post_content', 'title', 'created_at'],
+      attributes: [
+        'id', 
+        'post_content',
+         'title',
+          'created_at'
+        ],
       include: [
         {
           model: User,
@@ -83,8 +86,9 @@ router.get('/:id', (req, res) => {
   });
 
 // CREATE POST
+// POST api/posts/    Create a post
   router.post('/', withAuth, (req, res) => {
-    // expects {title: 'Taskmaster goes public!', post_content: 'https://taskmaster.com/press', user_id: 1}
+  // Needs title, post_content, user_id
     Post.create({
       title: req.body.title,
       post_content: req.body.post_content,
@@ -94,14 +98,12 @@ router.get('/:id', (req, res) => {
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
-      });
-
-
-      
+      });  
   });
 
   // UPDATE
 
+  // PUT  api/posts/1   Updates a specific post
   router.put('/:id',withAuth,  (req, res) => {
     Post.update(
       {
@@ -127,9 +129,7 @@ router.get('/:id', (req, res) => {
       });
   });
 
-
-  // DELETE
-
+  // DELETE api/posts/1   deletes a specific post
   router.delete('/:id', withAuth, (req, res) => {
    // alert("Inside router.delete");
     Post.destroy({

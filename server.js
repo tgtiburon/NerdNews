@@ -28,6 +28,7 @@ const sess = {
      //secret: 'secret',
      // maxAge in ms.  So 10 min would be 600000
      cookie: {maxAge:600000},
+    // cookie: {maxAge:3000},
      resave: false,
      saveUnitialized: true,
      store: new SequelizeStore({

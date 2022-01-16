@@ -157,15 +157,17 @@ header nav {
     min-height: 150px;
 
   }
-  #btn-new-post-holder {
+  #btn-new-post-holder, #btn-create-post {
    
     display:flex;
     justify-content: center;
+    align-items: center;
+    
     
     /* display:flex; */
   }
 
-  #btn-new-post {
+  #btn-new-post, #btn-create-post, #btn-comment, #my-btn {
     background-color: var(--color4);
     height: 5rem;
     width: 18rem;
@@ -177,16 +179,19 @@ header nav {
     text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
     background-color: var(--color2);
     font-weight: lighter;
-    
-    border-radius: 15px;
-    
+    border-radius: 15px; 
+    margin-top: 20px;
   }
 
-  #btn-new-post:hover {
+  #btn-new-post:hover, #btn-create-post:hover,
+    #btn-comment:hover, #my-btn:hover {
     color: var(--color4);
    
     /* text-shadow: none; */
   }
+
+
+
 
 
 ol {
