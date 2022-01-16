@@ -32,7 +32,7 @@ User.init(
             allowNull: false,
             validate: {
                 // TODO: change this to more
-                len:[1]
+                len:[5]
             }
         }
     },

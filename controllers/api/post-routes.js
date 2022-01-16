@@ -109,7 +109,6 @@ router.get('/:id', (req, res) => {
       {
         title: req.body.title,
         post_content: req.body.post_content,
-        //TODO: need this maybe?????
         user_id: req.session.user_id
       },
       {
