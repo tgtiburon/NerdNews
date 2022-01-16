@@ -16,11 +16,10 @@
     padding: 0;
 }
 main {
-    /* color:var(--color77); */
+   
     font-family: Helvetica, Arial, Helvetica, sans-serif;
     min-height: 80vh;
     
-
 }
   /*-----------------------------------------------------------*/
 /* Navbar style */
@@ -49,10 +48,9 @@ header nav {
   }
   
   header nav ul li a {
-    /* color: red; */
     padding: 10px 15px;
     font-weight: lighter;
-    font-size: 1.55vw;
+    font-size: 1.55rem;
     text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
   }
   
@@ -68,7 +66,7 @@ header nav {
     text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
     background-color: var(--color6);
     font-weight: lighter;
-    font-size: 1.55vw;
+    font-size: 1.55rem;
   }
   
   #logout:hover {
@@ -111,11 +109,28 @@ header nav {
   
 
   }
+  #add-comment-btn-holder {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+
+  }
+   /*-----------------------------------------------------------*/
   /*   edit post stuff */
+  
+  .edit-post-form>div {
+    display:flex;
+    flex-direction:column;
+  
+  }
+  #edit-post-btn-holder {
+    display: flex;
+    justify-content: space-evenly;
+  }
 #content-body {
-  width: 50vw;
-  height: 30vh;
-  resize: none;
+  min-width: 60%;
+  min-height: 150px;
+
 }
 .post>.title {
     color:var(--color77);
@@ -129,9 +144,9 @@ header nav {
   }
   
   .comment-form>div>textarea {
-    width: 50vw;
-  height: 25vh;
-  resize: none;
+    min-width: 100%;
+    min-height: 150px;
+     resize: none;
   }
   .comments>.comment {
     padding: 7px;
@@ -146,6 +161,7 @@ header nav {
 
   /*-----------------------------------------------------------*/
 /* New post styling */
+
 .new-post-form>div {
   display:flex;
   flex-direction:column;
@@ -157,15 +173,19 @@ header nav {
     min-height: 150px;
 
   }
+
+  #btn-create-post-holder {
+    display: flex;
+    align-items: center;
+  }
   #btn-new-post-holder, #btn-create-post {
    
     display:flex;
     justify-content: center;
     align-items: center;
-    
-    
-    /* display:flex; */
+   
   }
+
 
   #btn-new-post, #btn-create-post, #btn-comment, #my-btn {
     background-color: var(--color4);
@@ -181,21 +201,20 @@ header nav {
     font-weight: lighter;
     border-radius: 15px; 
     margin-top: 20px;
+    
   }
 
   #btn-new-post:hover, #btn-create-post:hover,
     #btn-comment:hover, #my-btn:hover {
     color: var(--color4);
-   
-    /* text-shadow: none; */
+  
   }
 
-
-
-
-
+ /*-----------------------------------------------------------*/
+ /* List of posts */
 ol {
-    font-size: 1.0rem;
+    font-size: 1.7rem;
+    color:var(--color4);
 
 }
 li {
@@ -223,13 +242,8 @@ footer {
 #login-title, #signup-title {
  
   color: var(--color4);
-
-  /* text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5); */
-  /* background-color: var(--color6); */
   font-weight: lighter;
   font-size: 3.0rem;
-
-
 
 }
 .login-form , .signup-form  {
@@ -262,5 +276,32 @@ footer {
 }/*768px breakpoint end */
     
 @media screen and (max-width: 575px) {
+  #logout {
+    /* color: var(--color77);
+    border: none;
+    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
+    background-color: var(--color6);
+    font-weight: lighter; */
+    font-size: 1.0rem;
+  }
+
+  header nav ul li a {
+    /* padding: 10px 15px;
+    font-weight: lighter; */
+    font-size: 1.0rem;
+    text-shadow:10px 10px 5px rgba(0, 0, 0, 0.5);
+  }
+
+   #my-btn {
+   
+    height: 4rem;
+    width: 10rem;
+    font-size: 2.0rem;
+    margin-bottom: 1rem;
+    border-radius: 15px; 
+    margin-top: 20px;
+    
+  }
+  
           
 }/*575px breakpoint end */

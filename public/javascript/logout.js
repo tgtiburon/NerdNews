@@ -1,3 +1,4 @@
+// Logout the user and send them back to home
 async function logout() {
   // alert("in logout");
     const response = await fetch('/api/users/logout', {
@@ -6,8 +7,7 @@ async function logout() {
     });
     if (response.ok) {
         document.location.replace('/');
-       // alert("replace doc in logout");
-
+     
     }else {
         alert(response.statusText);
     }

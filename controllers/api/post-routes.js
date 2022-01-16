@@ -108,7 +108,9 @@ router.get('/:id', (req, res) => {
     Post.update(
       {
         title: req.body.title,
-        post_content: req.body.post_content
+        post_content: req.body.post_content,
+        //TODO: need this maybe?????
+        user_id: req.session.user_id
       },
       {
         where: {
@@ -131,7 +133,7 @@ router.get('/:id', (req, res) => {
 
   // DELETE api/posts/1   deletes a specific post
   router.delete('/:id', withAuth, (req, res) => {
-   // alert("Inside router.delete");
+ 
     Post.destroy({
       where: {
         id: req.params.id

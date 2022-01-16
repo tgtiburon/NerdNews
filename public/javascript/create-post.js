@@ -1,11 +1,9 @@
+// Gets title and content from user and posts it to DB
 async function createPostHandler(event) {
     event.preventDefault();
-
-   // alert("Create post")
     const title = document.querySelector('input[name="post-title"]').value;
- //const post_content = document.querySelector('textarea[name="post-content"]').value.trim();
     const post_content = document.querySelector('textarea[name="post-content"]').value;
-      
+      // Need both title and content to post
     if(title && post_content) {
         const response = await fetch('/api/posts', {
             method: 'POST',

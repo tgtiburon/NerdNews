@@ -1,9 +1,7 @@
+// Gets updated title and content and PUT it to the db
 async function editFormHandler(event) {
     event.preventDefault();
-
-
      // On form submission it grabs the post title and url 
-    
      const title = document.querySelector('input[name="post-title"]').value;
      const post_content = document.querySelector('#content-body').value;
     
@@ -11,9 +9,7 @@ async function editFormHandler(event) {
      const id = window.location.toString().split('/') [
         window.location.toString().split('/').length -1
     ];
-    //alert(title);
-    // alert(post_content);
-
+   
     const response = await fetch(`/api/posts/${id}`, {
         method:'PUT', 
         body: JSON.stringify({

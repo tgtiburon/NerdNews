@@ -27,14 +27,6 @@ User.init(
             allowNull: false,
             unique: true,
         },
-        // email: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     unique: true,
-        //     validate: {
-        //         isEmail: true
-        //     }
-        // },
         password: {
             type:DataTypes.STRING,
             allowNull: false,
@@ -47,14 +39,6 @@ User.init(
     {
 
         hooks: {
-
-            // // set up beforeCreate lifecycle "hook" functionality
-            // beforeCreate(dbUserData) {
-            //     //userData stores prehash, newUserData stores hashed version
-            //     return bcrypt.hash(dbUserData.password, 10).then(newUserData => {
-            //         return newUserData
-            //     });
-            // }
             // Lets use async and await instead
             // Setup beforeCreate lifecycle 'hook' functionality
             async beforeCreate(newUserData) {

@@ -4,12 +4,10 @@ const { User,Post, Comment } = require('../models');
 
 const router = require('express').Router();
 
+
+//  GET /    gets all posts  no login needed
 router.get('/', (req, res)=> {
     console.log(req.session);
-  
-   // res.render('main');
-   // console.log(req.session);
-    //  res.json("Homepage");
     Post.findAll({
          attributes: [
             'id',
@@ -44,27 +42,21 @@ router.get('/', (req, res)=> {
         // we need to serialize the entire dbPostData array
         const posts = dbPostData.map(post => post.get({ plain: true }));
         // pass a single post object into the homepage template
-         // .render('homepage.handlebars')
         res.render('homepage', {
-        
           posts,
           loggedIn: req.session.loggedIn
      });   
-    //console.log(dbPostData[0]);
-   // res.render('homepage', dbPostData[0].get({ plain: true}));
-    //console.log(posts);
-   // res.render('homepage', { posts });
    
-    
-
     })
     .catch(err => {
         console.log(err);
-      //  console.log(dbPostData[0]);
         res.status(500).json(err);
     });
    
 });
+
+// GET /login    Checks to see if logged in
+// if not send to login page.
 router.get('/login', (req, res)=> {
     // if they are logged in redirect to a homepage if one exists.
     if (req.session.loggedIn) {
@@ -74,6 +66,8 @@ router.get('/login', (req, res)=> {
     // no variables need to be passed so only the page name
     res.render('login');
 });
+
+// GET /signup Check to see if logged in, if not send to signup page
 router.get('/signup', (req, res)=> {
     // if they are logged in redirect to a homepage if one exists.
     if (req.session.loggedIn) {
@@ -84,22 +78,9 @@ router.get('/signup', (req, res)=> {
     res.render('signup');
 });
 
-
-
-
+// GET /post/1   Gets a specific post, no login needed
 router.get('/post/:id', (req,res) => {
-    // below was hardcoded so we could test it
-    // const post = {
-    //     id: 1,
-    //     post_content: 'https://handlebarsjs.com/guide/',
-    //     title: 'Handlebars Docs',
-    //     created_at: new Date(),
-    //     vote_count: 10,
-    //     comments: [{}, {}],
-    //     user: {
-    //         username: 'test_user'
-    //     }
-    // };
+  
     Post.findOne({
         where: {
             id: req.params.id
@@ -109,7 +90,6 @@ router.get('/post/:id', (req,res) => {
             'post_content', 
             'title',
             'created_at',
-        //    [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         include: [
             {
@@ -145,15 +125,12 @@ router.get('/post/:id', (req,res) => {
         res.render('single-post', { 
             post,
             loggedIn: req.session.loggedIn
-        
         });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    })
-
-    
+    })  
 });
 
 

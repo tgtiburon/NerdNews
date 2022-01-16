@@ -1,5 +1,6 @@
 //const { response } = require("express");
 
+// Pull the post id from the url and DELETE from DB
 async function deleteFormHandler(event) {
     event.preventDefault();
 
@@ -8,7 +9,6 @@ async function deleteFormHandler(event) {
         window.location.toString().split('/').length -1
     ];
 
-//alert(id);
     const response = await fetch(`/api/posts/${id}`, {
         method:'DELETE',
     });

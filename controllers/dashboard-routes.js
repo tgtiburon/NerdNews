@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-
+// GET /dashboard/ gets all posts while logged in
 router.get('/',withAuth, (req,res) => {
 
     Post.findAll({
@@ -16,7 +16,7 @@ router.get('/',withAuth, (req,res) => {
           'post_content',
           'title',
           'created_at'//,
-         // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+     
         ],
         include: [
           {
@@ -41,29 +41,25 @@ router.get('/',withAuth, (req,res) => {
       })
         .then(dbPostData => {
            
-        
           // serialize data before passing to template
           const posts = dbPostData.map(post => post.get({ plain: true }));
      
-          // TODO: change
+          // Render dashboard with posts
           res.render('dashboard', { posts, loggedIn: true });
-          //res.render('dashboard', {layout:'dashboard-test'}, { posts, loggedIn: true });
+        
         })
         .catch(err => {
           console.log(err);
           res.status(500).json(err);
         });
-   
-
-
 });
 
-
+// Get /dashboard/newpost/  logged in to make a new post
 router.get('/newpost', withAuth, (req,res) => {
   res.render('new-post', {loggedIn: true });
 });
 
-
+// POST /dashboard/edit/1   logged in to edit posts 
 router.get('/edit/:id',withAuth, (req,res) => {
   Post.findOne({
       where: {
@@ -75,7 +71,6 @@ router.get('/edit/:id',withAuth, (req,res) => {
           'post_content', 
           'title', 
           'created_at',
-      
       ],
       include: [
             // include comment model here:
@@ -119,13 +114,6 @@ router.get('/edit/:id',withAuth, (req,res) => {
       res.status(500).json(err);
   });
 });
-
-
-
-
-
-
-
 
 
 module.exports = router;

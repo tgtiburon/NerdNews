@@ -1,8 +1,7 @@
+// gets the login/password from user and checks the db
 async function loginFormHandler(event) {
     event.preventDefault();
-    //alert("In login");
-
-   
+    
    const username = document.querySelector('#username-login').value.trim();
    const password = document.querySelector('#password-login').value.trim();
 
@@ -18,9 +17,7 @@ async function loginFormHandler(event) {
 
        if (response.ok) {
            console.log("Already logged in")
-          
-          // document.location.replace('/');
-           // TODO: not sure I want this
+           // Log them in and take them to their dashboard
            document.location.replace('/dashboard');
        } else {
            alert(response.statusText);
